@@ -1,24 +1,28 @@
-📘 StudyPal
-StudyPal is your personal smart study planner built with Python Flask.
-It helps students manage their subjects, topics, deadlines, and estimated study times — keeping you focused and organized effortlessly!
+# 📘 StudyPal
 
-🚀 Features
-➕ Add study tasks with Subject, Topic, Due Date, and Estimated Time
+StudyPal is a smart study planner web app that helps students organize and track their study tasks efficiently.
 
-✅ Mark tasks as Completed
+## 🚀 Features
+- Add tasks with subject, topic, due date, and estimated time
+- Mark tasks as completed
+- Delete tasks
+- Simple and clean UI with Bootstrap
 
-❌ Delete tasks when no longer needed
+## 🛠 Tech Stack
+- Python
+- Flask
+- SQLite
+- HTML/CSS (Bootstrap)
 
-📅 View all tasks sorted by upcoming deadlines
+## 💻 How to Run Locally
 
-🎨 Beautiful and minimal UI (Bootstrap 5)
+```bash
+# Clone the repo
+git clone https://github.com/your-username/studypal.git
+cd studypal
 
-🛠️ Built With
-Python 3.13
+# Install dependencies
+pip install -r requirements.txt
 
-Flask 3.1.0
-
-SQLite3
-
-Bootstrap 5 (for frontend styling)
-
+# Run the app
+python app.py

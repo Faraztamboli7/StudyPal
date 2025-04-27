@@ -7,6 +7,7 @@ StudyPal is a smart study planner web app that helps students organize and track
 - Mark tasks as completed
 - Delete tasks
 - Simple and clean UI with Bootstrap
+-Make it easier
 
 ## 🛠 Tech Stack
 - Python

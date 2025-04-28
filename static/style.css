@@ -1,118 +1,106 @@
-/* Base Styles */
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
 body {
-  background-color: #f8f9fa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  background-color: #f9f9ff;
   color: #333;
-  padding-bottom: 2rem;
+  line-height: 1.6;
 }
 
-/* Header Styles */
-h1 {
-  font-weight: 800;
-  color: #434495;
-  text-align: center;
-  margin: 2rem 0;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-/* Form Styling */
-form {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-.form-control {
-  border: 1px solid #ced4da;
-  transition: border-color 0.3s ease;
-}
-
-.form-control:focus {
-  border-color: #434495;
-  box-shadow: 0 0 0 0.25rem rgba(67, 68, 149, 0.25);
-}
-
-/* Button Enhancements */
-.btn-primary {
-  background-color: #434495;
-  border-color: #434495;
-  transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-  background-color: #35367a;
-  border-color: #2d2e6b;
-  transform: translateY(-1px);
-}
-
-/* Table Styling */
-.table {
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.table thead th {
-  background-color: #434495;
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #6c5ce7;
   color: white;
-  border-bottom: none;
 }
 
-.table-bordered td, .table-bordered th {
-  border: 1px solid #dee2e6;
+.navbar .logo {
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
-/* Status Indicators */
-.table-success {
-  background-color: rgba(40, 167, 69, 0.1) !important;
+.nav-links a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-/* Action Buttons */
-.btn-sm {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+.nav-links a:hover {
+  text-decoration: underline;
 }
 
-.btn-success {
-  transition: all 0.3s ease;
+/* Header */
+.header {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: #a29bfe;
+  color: white;
 }
 
-.btn-danger {
-  transition: all 0.3s ease;
+.header h1 {
+  font-size: 2.5em;
 }
 
-/* Hover Effects */
-.btn-success:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.header p {
+  margin: 20px 0;
+  font-size: 1.2em;
 }
 
-.btn-danger:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.btn {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #6c5ce7;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .container {
-      padding: 0 1rem;
-  }
-  
-  form .col-md-3, form .col-md-2 {
-      margin-bottom: 1rem;
-  }
+.btn:hover {
+  background-color: #5a4bd8;
 }
 
-/* Animation for Completed Tasks */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Features */
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 50px 20px;
 }
 
-.table-success {
-  animation: fadeIn 0.5s ease-in-out;
+.feature-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 20px;
+  padding: 30px;
+  width: 300px;
+  text-align: center;
+}
+
+.feature-card h2 {
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  color: #666;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #6c5ce7;
+  color: white;
+  margin-top: 30px;
 }

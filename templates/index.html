@@ -3,472 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Service</title>
+    <title>StudyPal - Your Study Assistant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset with Modern Best Practices */
-        *, *::before, *::after {
+        /* Reset and Base Styles */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Custom Properties */
         :root {
-            --primary-color: #6c5ce7;
-            --primary-dark: #5a4bd8;
-            --primary-light: #a29bfe;
-            --secondary-color: #00cec9;
-            --accent-color: #fd79a8;
-            --light-bg: #f9f9ff;
-            --dark-text: #333;
-            --light-text: #fff;
-            --gray-text: #666;
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --gray: #6c757d;
+            --border-radius: 8px;
             --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
             --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
-            --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
-            --border-radius: 8px;
-            --max-width: 1200px;
         }
 
-        /* Base Styles */
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--dark-text);
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
         }
 
         /* Layout */
         .container {
-            width: 100%;
-            max-width: var(--max-width);
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        section {
-            padding: 5rem 0;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Navbar - Enhanced */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            background-color: var(--primary-color);
-            color: var(--light-text);
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
         }
 
-        .navbar.scrolled {
-            padding: 1rem 2rem;
-            box-shadow: var(--shadow-md);
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .navbar .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
-        .navbar .logo-icon {
+        .logo i {
             font-size: 1.8rem;
         }
 
-        .nav-links {
+        /* Navigation */
+        nav ul {
             display: flex;
+            list-style: none;
             gap: 1.5rem;
         }
 
-        .nav-links a {
-            color: var(--light-text);
+        nav a {
+            color: white;
+            text-decoration: none;
             font-weight: 500;
-            position: relative;
             padding: 0.5rem 0;
+            position: relative;
         }
 
-        .nav-links a::after {
+        nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--light-text);
+            background-color: white;
             transition: var(--transition);
         }
 
-        .nav-links a:hover::after {
+        nav a:hover::after {
             width: 100%;
         }
 
         /* Mobile Menu */
         .menu-toggle {
             display: none;
-            cursor: pointer;
             font-size: 1.5rem;
-        }
-
-        /* Header - Enhanced */
-        .header {
-            text-align: center;
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: var(--light-text);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            animation: pulse 15s infinite linear;
-        }
-
-        @keyframes pulse {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-
-        .header .btn {
-            animation: fadeInUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Buttons - Enhanced */
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
             cursor: pointer;
-            text-align: center;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subject-list {
+            list-style: none;
+        }
+
+        .subject-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .subject-item:hover {
+            color: var(--primary);
+        }
+
+        .subject-item.active {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Study Content */
+        .study-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
             box-shadow: var(--shadow-sm);
         }
 
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--light-text);
-            margin-left: 1rem;
-        }
-
-        .btn-outline:hover {
-            background: var(--light-text);
-            color: var(--primary-color);
-        }
-
-        .btn-group {
+        .content-header {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        /* Features Section - Enhanced */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            color: var(--gray-text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-md);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
         }
 
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
+        .content-title {
+            font-size: 1.5rem;
+            color: var(--primary);
         }
 
-        .feature-card p {
-            color: var(--gray-text);
+        /* Study Schedule */
+        .schedule-container {
+            margin-top: 2rem;
         }
 
-        /* Plans Section */
-        .plans-section {
-            background-color: #f8f9fa;
-        }
-
-        .plans-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .plan-card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-md);
-            padding: 2rem;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .plan-card.popular {
-            border: 2px solid var(--accent-color);
-            transform: scale(1.05);
-        }
-
-        .plan-card.popular::after {
-            content: 'Most Popular';
-            position: absolute;
-            top: 10px;
-            right: -30px;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.3rem 3rem;
-            font-size: 0.8rem;
-            font-weight: bold;
-            transform: rotate(45deg);
-        }
-
-        .plan-price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin: 1rem 0;
-        }
-
-        .plan-period {
-            font-size: 1rem;
-            color: var(--gray-text);
-        }
-
-        .plan-features {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .plan-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+        .schedule-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            margin-bottom: 1rem;
         }
 
-        .plan-features li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--secondary-color);
-            margin-right: 0.5rem;
+        .schedule-title {
+            font-size: 1.2rem;
+            color: var(--primary);
         }
 
-        /* Records Section */
-        .records-section {
-            background-color: var(--primary-light);
+        .schedule-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Calendar */
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        .calendar th {
+            background-color: var(--primary);
             color: white;
-        }
-
-        .records-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            padding: 0.8rem;
             text-align: center;
         }
 
-        .record-item {
-            padding: 2rem;
+        .calendar td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            height: 100px;
+            vertical-align: top;
+            position: relative;
         }
 
-        .record-number {
-            font-size: 3rem;
+        .calendar .today {
+            background-color: rgba(76, 201, 240, 0.1);
+            border: 2px solid var(--accent);
+        }
+
+        .calendar .date {
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
-        .record-label {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        /* Assistance Section */
-        .assistance-section {
-            background-color: white;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .faq-question {
-            background-color: var(--light-bg);
-            padding: 1.5rem;
-            font-weight: 600;
+        .calendar .event {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+            display: block;
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
         }
 
-        .faq-question:hover {
-            background-color: #f0f0ff;
+        .calendar .event.lecture {
+            background-color: var(--success);
         }
 
-        .faq-question::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            transition: var(--transition);
+        .calendar .event.assignment {
+            background-color: var(--warning);
         }
 
-        .faq-item.active .faq-question::after {
-            transform: rotate(180deg);
+        .calendar .event.exam {
+            background-color: var(--danger);
         }
 
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
+        /* Add Event Form */
+        .event-form {
+            background-color: white;
             border-radius: var(--border-radius);
+            padding: 1.5rem;
             box-shadow: var(--shadow-md);
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .event-form.active {
+            display: block;
+        }
+
+        .form-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .form-group label {
@@ -483,557 +292,560 @@
             border: 1px solid #ddd;
             border-radius: var(--border-radius);
             font-size: 1rem;
-            transition: var(--transition);
         }
 
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer - Enhanced */
-        .footer {
-            background-color: #2d3436;
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: #b2b2b2;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-
-        .social-links {
+        .form-row {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
         }
 
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .social-links a:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-3px);
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
         }
 
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #b2b2b2;
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary {
+            background-color: var(--gray);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Study Resources */
+        .resources {
+            margin-top: 2rem;
+        }
+
+        .resources-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .resource-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary);
+        }
+
+        .resource-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-meta {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        /* Progress Tracking */
+        .progress-section {
+            margin-top: 2rem;
+        }
+
+        .progress-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success);
+            border-radius: 5px;
+            width: 65%;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
             font-size: 0.9rem;
+            color: var(--gray);
         }
 
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--primary-dark);
-                flex-direction: column;
-                align-items: center;
-                padding: 2rem 0;
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .header {
-                padding: 4rem 1rem;
-            }
-            
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .btn-group {
+            .header-content {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
-            .btn {
-                width: 100%;
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
             }
-            
-            .records-container {
-                grid-template-columns: repeat(2, 1fr);
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
             }
         }
-
-        @media (max-width: 480px) {
-            .records-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .plan-card.popular {
-                transform: none;
-            }
-        }
-
-        /* Animations */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* Utility Classes */
-        .text-center { text-align: center; }
-        .mt-1 { margin-top: 1rem; }
-        .mt-2 { margin-top: 2rem; }
-        .mb-1 { margin-bottom: 1rem; }
-        .mb-2 { margin-bottom: 2rem; }
-        .py-1 { padding-top: 1rem; padding-bottom: 1rem; }
-        .py-2 { padding-top: 2rem; padding-bottom: 2rem; }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <header>
         <div class="container">
-            <a href="#" class="logo">
-                <i class="fas fa-rocket logo-icon"></i>
-                <span>Premium</span>
-            </a>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#plans">Plans</a></li>
-                <li><a href="#records">Records</a></li>
-                <li><a href="#assistance">Assistance</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="header" id="home">
-        <div class="header-content">
-            <h1>Premium Service For Your Business</h1>
-            <p>Join thousands of satisfied customers who trust our premium services to grow their business</p>
-            <div class="btn-group">
-                <button id="getStartedBtn" class="btn">Get Started</button>
-                <button class="btn btn-outline">Learn More</button>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>StudyPal</span>
+                </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="#schedule"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                        <li><a href="#resources"><i class="fas fa-book"></i> Resources</a></li>
+                        <li><a href="#progress"><i class="fas fa-chart-line"></i> Progress</a></li>
+                        <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </header>
 
-    <!-- Features Section -->
-    <section class="section" id="features">
+    <main>
         <div class="container">
-            <div class="section-title">
-                <h2>Amazing Features</h2>
-                <p>Our premium service comes with all these amazing features that will help your business grow</p>
-            </div>
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-chart-line feature-icon floating"></i>
-                    <h3>Advanced Analytics</h3>
-                    <p>Get detailed insights and analytics to track your business performance and growth.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt feature-icon floating"></i>
-                    <h3>Premium Security</h3>
-                    <p>Military-grade encryption and security protocols to keep your data safe and secure.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-headset feature-icon floating"></i>
-                    <h3>24/7 Support</h3>
-                    <p>Our dedicated support team is available round the clock to assist you with any issues.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="dashboard">
+                <aside class="sidebar">
+                    <h2 class="sidebar-title">
+                        <i class="fas fa-book-open"></i> My Subjects
+                    </h2>
+                    <ul class="subject-list">
+                        <li class="subject-item active">Mathematics</li>
+                        <li class="subject-item">Physics</li>
+                        <li class="subject-item">Chemistry</li>
+                        <li class="subject-item">Biology</li>
+                        <li class="subject-item">Computer Science</li>
+                        <li class="subject-item">History</li>
+                        <li class="subject-item">Literature</li>
+                    </ul>
+                </aside>
 
-    <!-- Plans Section (Initially Hidden) -->
-    <section class="section plans-section hidden" id="plans">
-        <div class="container">
-            <div class="section-title">
-                <h2>Choose Your Plan</h2>
-                <p>Select the perfect plan that fits your business needs and budget</p>
-            </div>
-            <div class="plans-container">
-                <div class="plan-card">
-                    <h3>Basic</h3>
-                    <div class="plan-price">$9.99</div>
-                    <div class="plan-period">per month</div>
-                    <ul class="plan-features">
-                        <li>10 Projects</li>
-                        <li>5 Team Members</li>
-                        <li>Basic Analytics</li>
-                        <li>Email Support</li>
-                        <li>Limited Storage</li>
-                    </ul>
-                    <button class="btn">Choose Plan</button>
-                </div>
-                <div class="plan-card popular">
-                    <h3>Professional</h3>
-                    <div class="plan-price">$29.99</div>
-                    <div class="plan-period">per month</div>
-                    <ul class="plan-features">
-                        <li>Unlimited Projects</li>
-                        <li>20 Team Members</li>
-                        <li>Advanced Analytics</li>
-                        <li>Priority Support</li>
-                        <li>100GB Storage</li>
-                    </ul>
-                    <button class="btn">Choose Plan</button>
-                </div>
-                <div class="plan-card">
-                    <h3>Enterprise</h3>
-                    <div class="plan-price">$99.99</div>
-                    <div class="plan-period">per month</div>
-                    <ul class="plan-features">
-                        <li>Unlimited Projects</li>
-                        <li>Unlimited Team Members</li>
-                        <li>Premium Analytics</li>
-                        <li>24/7 Dedicated Support</li>
-                        <li>1TB Storage</li>
-                    </ul>
-                    <button class="btn">Choose Plan</button>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="study-content">
+                    <div class="content-header">
+                        <h1 class="content-title">Mathematics Study Plan</h1>
+                        <button class="btn btn-primary" id="addEventBtn">
+                            <i class="fas fa-plus"></i> Add Event
+                        </button>
+                    </div>
 
-    <!-- Records Section (Initially Hidden) -->
-    <section class="section records-section hidden" id="records">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Records</h2>
-                <p>We take pride in our numbers and the value we provide to our customers</p>
-            </div>
-            <div class="records-container">
-                <div class="record-item">
-                    <div class="record-number">10K+</div>
-                    <div class="record-label">Happy Clients</div>
-                </div>
-                <div class="record-item">
-                    <div class="record-number">99%</div>
-                    <div class="record-label">Satisfaction Rate</div>
-                </div>
-                <div class="record-item">
-                    <div class="record-number">24/7</div>
-                    <div class="record-label">Support Availability</div>
-                </div>
-                <div class="record-item">
-                    <div class="record-number">5M+</div>
-                    <div class="record-label">Projects Completed</div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <p>Welcome to your Mathematics study plan. Here you can schedule your study sessions, track your progress, and access learning resources.</p>
 
-    <!-- Assistance Section (Initially Hidden) -->
-    <section class="section assistance-section hidden" id="assistance">
-        <div class="container">
-            <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about our premium service</p>
-            </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">What payment methods do you accept?</div>
-                    <div class="faq-answer">
-                        <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. All payments are processed securely through our encrypted payment gateway.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can I upgrade or downgrade my plan later?</div>
-                    <div class="faq-answer">
-                        <p>Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades will apply at your next billing cycle. Any prorated differences will be credited to your account.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Is there a free trial available?</div>
-                    <div class="faq-answer">
-                        <p>We offer a 14-day free trial for all our plans with no credit card required. You'll have full access to all features during the trial period.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How do I cancel my subscription?</div>
-                    <div class="faq-answer">
-                        <p>You can cancel anytime from your account settings. There are no cancellation fees, and you'll continue to have access until the end of your current billing period.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What kind of support do you offer?</div>
-                    <div class="faq-answer">
-                        <p>We provide 24/7 support via live chat, email, and phone for all plans. Higher-tier plans include priority support with faster response times and dedicated account managers.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="schedule-container">
+                        <div class="schedule-header">
+                            <h2 class="schedule-title">
+                                <i class="fas fa-calendar-week"></i> Study Schedule
+                            </h2>
+                            <div class="schedule-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    October 2023
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Have questions? Get in touch with our team for personalized assistance</p>
-            </div>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" class="form-control" placeholder="John Doe" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" class="form-control" placeholder="How can we help?">
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" class="form-control" placeholder="Tell us about your needs..."></textarea>
-                </div>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
+                        <table class="calendar">
+                            <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="date">25</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">26</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">27</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">28</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">29</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">30</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">1</div>
+                                        <span class="event lecture">Algebra Lecture</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="date">2</div>
+                                    </td>
+                                    <td class="today">
+                                        <div class="date">3</div>
+                                        <span class="event assignment">Problem Set Due</span>
+                                    </td>
+                                    <td>
+                                        <div class="date">4</div>
+                                        <span class="event lecture">Calculus Lecture</span>
+                                    </td>
+                                    <td>
+                                        <div class="date">5</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">6</div>
+                                        <span class="event">Study Group</span>
+                                    </td>
+                                    <td>
+                                        <div class="date">7</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">8</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="date">9</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">10</div>
+                                        <span class="event assignment">Homework Due</span>
+                                    </td>
+                                    <td>
+                                        <div class="date">11</div>
+                                        <span class="event lecture">Geometry Lecture</span>
+                                    </td>
+                                    <td>
+                                        <div class="date">12</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">13</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">14</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">15</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="date">16</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">17</div>
+                                        <span class="event exam">Midterm Exam</span>
+                                    </td>
+                                    <td>
+                                        <div class="date">18</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">19</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">20</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">21</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">22</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="date">23</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">24</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">25</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">26</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">27</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">28</div>
+                                    </td>
+                                    <td>
+                                        <div class="date">29</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Premium</h3>
-                    <p>Providing premium services to help businesses grow and succeed in the digital age.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    <!-- Add Event Form -->
+                    <div class="event-form" id="eventForm">
+                        <h3 class="form-title">Add New Study Event</h3>
+                        <form id="studyEventForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="eventTitle">Event Title</label>
+                                    <input type="text" id="eventTitle" class="form-control" placeholder="e.g., Algebra Review" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventType">Event Type</label>
+                                    <select id="eventType" class="form-control" required>
+                                        <option value="">Select type</option>
+                                        <option value="lecture">Lecture</option>
+                                        <option value="assignment">Assignment</option>
+                                        <option value="exam">Exam</option>
+                                        <option value="study">Study Session</option>
+                                        <option value="group">Study Group</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="eventDate">Date</label>
+                                    <input type="date" id="eventDate" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventTime">Time</label>
+                                    <input type="time" id="eventTime" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventDescription">Description</label>
+                                <textarea id="eventDescription" class="form-control" rows="3" placeholder="Add details about this event"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Save Event</button>
+                                <button type="button" class="btn btn-secondary" id="cancelEventBtn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Study Resources -->
+                    <div class="resources">
+                        <h2 class="resources-title">
+                            <i class="fas fa-book"></i> Study Resources
+                        </h2>
+                        <div class="resource-list">
+                            <div class="resource-card">
+                                <h3 class="resource-title">Algebra Fundamentals</h3>
+                                <div class="resource-meta">PDF • 15 pages • Added Oct 1</div>
+                                <p>Basic concepts and practice problems for algebraic equations.</p>
+                                <div class="resource-actions">
+                                    <button class="btn btn-primary btn-sm">View</button>
+                                    <button class="btn btn-secondary btn-sm">Download</button>
+                                </div>
+                            </div>
+                            <div class="resource-card">
+                                <h3 class="resource-title">Calculus Cheat Sheet</h3>
+                                <div class="resource-meta">PDF • 5 pages • Added Oct 5</div>
+                                <p>Quick reference for differentiation and integration rules.</p>
+                                <div class="resource-actions">
+                                    <button class="btn btn-primary btn-sm">View</button>
+                                    <button class="btn btn-secondary btn-sm">Download</button>
+                                </div>
+                            </div>
+                            <div class="resource-card">
+                                <h3 class="resource-title">Geometry Video Tutorials</h3>
+                                <div class="resource-meta">Playlist • 10 videos • Added Sep 28</div>
+                                <p>Video explanations of key geometry concepts.</p>
+                                <div class="resource-actions">
+                                    <button class="btn btn-primary btn-sm">Watch</button>
+                                    <button class="btn btn-secondary btn-sm">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Tracking -->
+                    <div class="progress-section">
+                        <h2 class="progress-title">
+                            <i class="fas fa-chart-line"></i> Study Progress
+                        </h2>
+                        <div class="progress-container">
+                            <h3>Course Completion</h3>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>65% Complete</span>
+                                <span>13/20 Topics</span>
+                            </div>
+                        </div>
+                        <div class="progress-container" style="margin-top: 1.5rem;">
+                            <h3>Assignment Progress</h3>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%;"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>80% Complete</span>
+                                <span>8/10 Assignments</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#plans">Pricing</a></li>
-                        <li><a href="#assistance">FAQ</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Digital Marketing</a></li>
-                        <li><a href="#">Cloud Solutions</a></li>
-                        <li><a href="#">Data Analytics</a></li>
-                        <li><a href="#">Consulting</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 100</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@premiumservice.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Premium Service. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile Menu Toggle
             const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
+            const navMenu = document.querySelector('.nav-menu');
             
             menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
 
-            // Smooth Scrolling for Navigation Links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu if open
-                        navLinks.classList.remove('active');
-                    }
-                });
-            });
-
-            // Get Started Button Functionality
-            const getStartedBtn = document.getElementById('getStartedBtn');
-            const plansSection = document.getElementById('plans');
-            const recordsSection = document.getElementById('records');
-            const assistanceSection = document.getElementById('assistance');
+            // Subject Selection
+            const subjectItems = document.querySelectorAll('.subject-item');
             
-            getStartedBtn.addEventListener('click', function() {
-                // Show all hidden sections
-                plansSection.classList.remove('hidden');
-                recordsSection.classList.remove('hidden');
-                assistanceSection.classList.remove('hidden');
-                
-                // Scroll to plans section
-                window.scrollTo({
-                    top: plansSection.offsetTop - 70,
-                    behavior: 'smooth'
+            subjectItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    subjectItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    // Here you would typically load the selected subject's data
+                    document.querySelector('.content-title').textContent = `${this.textContent} Study Plan`;
                 });
             });
 
-            // FAQ Accordion
-            const faqItems = document.querySelectorAll('.faq-item');
+            // Event Form Toggle
+            const addEventBtn = document.getElementById('addEventBtn');
+            const cancelEventBtn = document.getElementById('cancelEventBtn');
+            const eventForm = document.getElementById('eventForm');
             
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    // Close all other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
+            addEventBtn.addEventListener('click', function() {
+                eventForm.classList.add('active');
+                // Scroll to form
+                eventForm.scrollIntoView({ behavior: 'smooth' });
             });
-
-            // Navbar Scroll Effect
-            window.addEventListener('scroll', function() {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
+            
+            cancelEventBtn.addEventListener('click', function() {
+                eventForm.classList.remove('active');
             });
 
             // Form Submission
-            const contactForm = document.querySelector('.contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Get form values
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    
-                    // Simple validation
-                    if (name && email) {
-                        alert(`Thank you, ${name}! We've received your message and will contact you at ${email} soon.`);
-                        contactForm.reset();
-                    } else {
-                        alert('Please fill in all required fields.');
-                    }
-                });
-            }
-
-            // Animate record numbers
-            const recordNumbers = document.querySelectorAll('.record-number');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateValue(entry.target, 0, parseInt(entry.target.textContent.replace(/[^0-9]/g, '')), 2000);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            recordNumbers.forEach(number => {
-                observer.observe(number);
+            const studyEventForm = document.getElementById('studyEventForm');
+            
+            studyEventForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const title = document.getElementById('eventTitle').value;
+                const type = document.getElementById('eventType').value;
+                const date = document.getElementById('eventDate').value;
+                const time = document.getElementById('eventTime').value;
+                const description = document.getElementById('eventDescription').value;
+                
+                // Here you would typically save the event to a database
+                // For this demo, we'll just show an alert and reset the form
+                alert(`Event "${title}" scheduled for ${date} at ${time} has been saved!`);
+                
+                // Reset form
+                studyEventForm.reset();
+                eventForm.classList.remove('active');
+                
+                // In a real app, you would add the event to the calendar
             });
 
-            function animateValue(obj, start, end, duration) {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const value = Math.floor(progress * (end - start) + start);
-                    obj.textContent = end.toString().includes('%') ? value + '%' : value.toLocaleString();
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
+            // Calendar Event Click
+            const calendarEvents = document.querySelectorAll('.calendar .event');
+            
+            calendarEvents.forEach(event => {
+                event.addEventListener('click', function() {
+                    // Here you would typically show event details
+                    alert(`Event: ${this.textContent}\nClick again to edit or delete.`);
+                });
+            });
+
+            // Set today's date in the form
+            const today = new Date();
+            const formattedDate = today.toISOString().substr(0, 10);
+            document.getElementById('eventDate').value = formattedDate;
+            
+            // Set default time to current hour + 1
+            const nextHour = today.getHours() + 1;
+            const formattedTime = `${nextHour.toString().padStart(2, '0')}:00`;
+            document.getElementById('eventTime').value = formattedTime;
         });
     </script>
 </body>
